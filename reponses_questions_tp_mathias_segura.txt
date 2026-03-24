@@ -1,0 +1,80 @@
+
+----------------------------------------------------------------------------------------
+Réponses aux questions - TP — Régression quadratique entraînée par descente de gradient
+Mathias Segura
+----------------------------------------------------------------------------------------
+
+
+PARTIE A
+
+1) Pourquoi la standardisation aide la descente de gradient ?
+- La standardisation met toutes les variables à la même échelle, ce qui stabilise et accélère la convergence.
+
+2) Que se passe-t-il si on ne normalise pas et que les surfaces sont en dizaines alors que les prix sont en centaines de milliers ?
+- Sans normalisation, le gradient de prix serait plus grand comparé à celui de la surface, la prédiction n'aurait pas de pertinence.
+
+3) La relation semble-t-elle parfaitement linéaire ? Que pourrait apporter un modèle quadratique ?
+- La relation est pratiquement linéaire mais pas tout à fait. Un modèle quadratique va créer une petite courbure pour accompagner au mieux les données.
+
+
+
+PARTIE B
+
+1) Quelles sont les trois poids du modèle ?
+- Les 3 poids du modèle sont : a, b, c
+
+2) En quoi ce modèle est-il plus flexible qu'un modèle affine ?
+- Ce modèle est plus flexible qu'un modèle affine car il n'est pas une simple droite. Pour un jeu de données plus comportant des points plus éparsent, le modèle sera capable de former une courbure augmentant la pertinence des résultats. 
+
+3) Quelle différence d'interprétation entre MSE et RMSE ? Pourquoi la RMSE est parfois plus lisible ?
+- La différence entre MSE et RMSE réside dans le fait que la MSE est au carré, RMSE est simplement la racine carré de la MSE ce qui permet de ramener les erreurs dans le degrès de notre contexte d'étude et donc elle est plus lisible.
+
+
+
+PARTIE C
+
+1) Quelle est la dérivée de (ŷ − y)² par rapport à ŷ ?
+- voir feuille de calcul à la main
+
+2) Quelle est la dérivée de ŷ = ax² + bx + c par rapport à a, b, c ?
+- Pour a = xi²
+- Pour b = xi
+- Pour c = 1
+
+3) Où intervient le facteur 1/n ?
+Le facteur 1/n intervient dans la loss fonction (fonction de perte MSE) et permet de faire la moyenne
+(Mean_Square_Error)
+
+
+
+PARTIE D
+
+1) À quoi sert le learning rate η ?
+- le learning rate permet de contrôle le pas par chaque calcul, plus il est petit plus on a de chance de tomber dessus, plus il est grand plus on risque de le "rater"
+
+2) Donner deux symptômes d'un learning rate trop grand.
+- Dépasse le minimum 
+- La RMSE ne se stabilise jamais donc on a jamais le même résultat, pas de convergence
+
+3) Donner un symptôme d'un learning rate trop petit.
+- temps de calcul trop lent
+
+
+
+PARTIE E
+
+1) La RMSE doit-elle être strictement décroissante à chaque epoch ?
+- LA RMSE ne doit pas être strictement décroissante mais globalement décroissante sinon cela signifie que nous avons un souci avec le learning rate par exemple. Plus elle descend plus elle tend vers une convergence et donc une prédiction propre.
+
+
+2) Quand peut-on arrêter l'entraînement (early stopping) ?
+- On peut arrêter l'entrainement quand la différence entre chaque résultat est insignifiant. Dans notre cas le seuil est de 0.0000001. Si la différence entre les prédictions n'est pas supérieur à cette valeur alors on peut considérer qu'il n'y aura pas d'amélioration significative supplémentaire. Dans mon cas j'ai paramétrer 100 000 en epochs. Si il y a une convergence avant les 100 000 l'entrainement s'arrête sinon il continue. 100 000 = moins de 50 secendes.
+
+
+
+PARTIE F
+
+1) Le modèle quadratique fait-il toujours mieux ?
+- Le modèle quadratique ne fait pas toujours mieux, cela dépend du contexte. Dans notre cas la courbure reste minime car les points par nature créent une droite. L'utilisation du modèle quadratique, qui peut-être plus proche des données car il peut faire une courbure, risque de créer de l'overfitting. Le modèle quadratique sera moins efficace sur plusieurs jeux de données car il enregistrera les "variation aléatoires" d'un jeu qu'il pratiquera sur un autre jeu., l'apprentissage est alors biaisé. Là où la régression linéaire n'y pretera pas attention.
+
+

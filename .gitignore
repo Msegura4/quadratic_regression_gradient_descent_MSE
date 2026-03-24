@@ -1,0 +1,5 @@
+gradientenv/
+__pycache__/
+*.pyc
+.DS_Store
+prix_maisons.csv
